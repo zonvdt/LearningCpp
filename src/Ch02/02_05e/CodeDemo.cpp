@@ -22,6 +22,8 @@ int main(){
     std::cout << "The type of f is " << typeid(f).name() << std::endl;
     std::cout << "The type of g is " << typeid(g).name() << std::endl;
 
+    std::cout << g;
+
     std::cout << std::endl << std::endl;
     return (0);
 }
