@@ -13,7 +13,7 @@ int main(){
     std::cout << "fahrenheit: " << fahrenheit << std::endl;
     std::cout << "celcius:    " << celcius << std::endl;
 
-    float weight = 10.99;
+    double weight = 10.99;
 
     std::cout << std::endl;
     std::cout << "Float         : " << weight << std::endl;
