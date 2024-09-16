@@ -85,4 +85,13 @@ unsigned char StudentRecords::get_course_credits(int cid) const{
     return courses[j].get_credits();
 }
 
-float StudentRecords::get_GPA(int sid) const{}
+float StudentRecords::get_GPA(int sid) const{
+    float points = 0.0f, credits = 0.0f;
+    for (const Grade& grd : grades)
+        if (grd.get_student_id() == sid){
+            float credit = StudentRecords::get_course_credits(grd.get_course_id());
+            credits += credit;
+            points += StudentRecords::get_num_grade(grd.get_grade()) * credit;
+        }
+    return (points / credits);
+}

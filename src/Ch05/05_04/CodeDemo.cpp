@@ -6,13 +6,13 @@
 #include <vector>
 #include "records.h"
 
-void initialize(StudentRecords&);
+void initialise(StudentRecords&);
 
 int main(){
     int id;
     StudentRecords SR;
     
-    initialize(SR);
+    initialise(SR);
 
     std::cout << "Enter a student ID: " << std::flush;
     std::cin >> id;
@@ -23,7 +23,7 @@ int main(){
     return (0);
 }
 
-void initialize(StudentRecords& srec){
+void initialise(StudentRecords& srec){
     srec.add_student(1, "George P. Burdell");
     srec.add_student(2, "Nancy Rhodes");
 

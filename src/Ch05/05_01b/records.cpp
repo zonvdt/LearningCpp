@@ -42,6 +42,19 @@ char Grade::get_grade() const{
     return grade;
 }
 
+std::vector<Student> students = {Student(1, "George P. Burdell"),
+                                 Student(2, "Nancy Rhodes")};
+
+std::vector<Course> courses = {Course(1, "Algebra", 5),
+                               Course(2, "Physics", 4),
+                               Course(3, "English", 3),
+                               Course(4, "Economics", 4)};
+
+std::vector<Grade> grades = {Grade(1, 1, 'B'), Grade(1, 2, 'A'), 
+                             Grade(1, 3, 'C'), Grade(2, 1, 'A'), 
+                             Grade(2, 2, 'A'), Grade(2, 4, 'B')};
+
+
 void StudentRecords::add_student(int sid, std::string sname){
     students.push_back(Student(sid, sname));
 }
@@ -54,10 +67,46 @@ void StudentRecords::add_grade(int sid, int cid, char grade){
     grades.push_back(Grade(sid, cid, grade));
 }
 
-float StudentRecords::get_num_grade(char letter) const{}
+float StudentRecords::get_num_grade(char letter) const{
+    float num_grd;          // float for the numeric grade
+    switch (letter){
+        case 'A': num_grd = 4.0f;
+            break;
+        case 'B': num_grd = 3.0f;
+            break;
+        case 'C': num_grd = 2.0f;
+            break;
+        case 'D': num_grd = 1.0f;
+            break;
+        default:  num_grd = 0.0f;
+            break;
+    };
+    return num_grd;
+}
 
-std::string StudentRecords::get_student_name(int sid) const{}
+std::string StudentRecords::get_student_name(int sid) const{
+    int i = 0;
+    while (i < students.size() && students[i].get_id() != sid)
+        i++;
+    return students[i].get_name();
+}
 
-unsigned char StudentRecords::get_course_credits(int cid) const{}
+unsigned char StudentRecords::get_course_credits(int cid) const{
+    int j = 0;
+    while (j < courses.size() && courses[j].get_id() != cid)
+        j++;
+    return courses[j].get_credits();
+}
 
-float StudentRecords::get_GPA(int sid) const{}
+float StudentRecords::get_GPA(int sid) const{
+    float points = 0.0f, credits = 0.0f;
+    for (const Grade& grd : grades)
+        if (grd.get_student_id() == sid){
+            float num_grd, course_credits;
+            num_grd = get_num_grade(grd.get_grade());
+            course_credits = get_course_credits(grd.get_course_id());
+            credits += course_credits;
+            points += num_grd * credits;
+        }
+    return points / credits;
+}
