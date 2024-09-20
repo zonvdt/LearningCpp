@@ -18,7 +18,13 @@ int main(){
     else{
         while (!inFile.eof()){
             getline(inFile, str);
-            std::cout << str << std::endl;
+            std::cout << str << ", ";
+            getline(inFile, str);
+            int number = stoi(str);
+            std::cout << number << ", ";
+            getline(inFile, str);
+            const char *chr = str.c_str();
+            std::cout << *chr << std::endl;
         }
         inFile.close();
     }
